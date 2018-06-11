@@ -1,0 +1,8 @@
+@import "true";
+@import "../src/custom-box";
+
+@include describe('sass-custom-box global') {
+    @include it('Can run tests') {
+        @include assert-true(true);
+    }
+}

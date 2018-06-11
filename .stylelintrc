@@ -1,0 +1,7 @@
+{
+  "extends": "@swis/stylelint-config",
+  "plugins": [
+    "stylelint-order",
+    "stylelint-scss"
+  ]
+}
