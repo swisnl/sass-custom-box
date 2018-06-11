@@ -1,43 +1,74 @@
-@mixin custom-box() {
-    position: relative;
+$custom-box-element-separator: "__";
+
+@mixin custom-box($block) {
+    .#{$block} {
+        position: relative;
+
+        @content;
+    }
 }
 
-@mixin custom-box__input() {
-    opacity: 0;
-    position: absolute;
-}
-
-@mixin custom-box__label() {
-    display: flex;
-    position: relative;
-
-    &:before {
-        background-color: red;
-        border: 1px solid black;
-        content: '';
-        display: block;
-        flex: 0 0 2rem;
-        height: 2rem;
-        margin-right: 1rem;
-        min-width: 2rem;
-
-        .form-radio__input:focus + &,
-        .form-checkbox__input:focus + & {
-            border: 1px solid darken(red, 10);
-            box-shadow: 0 0 5px rgba(blue, .4);
-        }
+@mixin custom-box-input($element) {
+    @if & == null {
+        @error 'no parent';
     }
 
-    &:after {
-        border-bottom: 3px solid white;
-        border-right: 3px solid white;
-        content: '';
-        display: none;
-        height: 13px;
-        left: 7px;
-        position: absolute;
-        top: 2px;
-        transform: rotate(40deg);
-        width: 7px;
+    @at-root {
+        #{&}#{$custom-box-element-separator + $element} {
+            opacity: 0;
+            position: absolute;
+
+            @content;
+        }
+    }
+}
+
+@mixin custom-box-label($element) {
+    @if & == null {
+        @error 'no parent';
+    }
+
+    @at-root {
+        #{&}#{$custom-box-element-separator + $element} {
+            display: flex;
+            position: relative;
+
+            &:before {
+                background-color: red;
+                border: 1px solid black;
+                content: '';
+                display: block;
+                flex: 0 0 1rem;
+                height: 1rem;
+                margin-right: .5rem;
+                min-width: 1rem;
+
+                // TODO Add focus styles
+            }
+
+            &:after {
+                border-bottom: 3px solid white;
+                border-right: 3px solid white;
+                content: '';
+                display: none;
+                height: .5rem;
+                left: .1rem;
+                position: absolute;
+                top: .2rem;
+                transform: rotate(40deg);
+                transform-origin: bottom right;
+                width: .25rem;
+            }
+
+            @content;
+        }
+
+        @at-root {
+            #{&} > input[type="checkbox"]:checked + #{&}#{$custom-box-element-separator + $element} {
+                &:after {
+                    display: block;
+                }
+            }
+        }
     }
 }
