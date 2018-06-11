@@ -1,0 +1,43 @@
+@mixin custom-box() {
+    position: relative;
+}
+
+@mixin custom-box__input() {
+    opacity: 0;
+    position: absolute;
+}
+
+@mixin custom-box__label() {
+    display: flex;
+    position: relative;
+
+    &:before {
+        background-color: red;
+        border: 1px solid black;
+        content: '';
+        display: block;
+        flex: 0 0 2rem;
+        height: 2rem;
+        margin-right: 1rem;
+        min-width: 2rem;
+
+        .form-radio__input:focus + &,
+        .form-checkbox__input:focus + & {
+            border: 1px solid darken(red, 10);
+            box-shadow: 0 0 5px rgba(blue, .4);
+        }
+    }
+
+    &:after {
+        border-bottom: 3px solid white;
+        border-right: 3px solid white;
+        content: '';
+        display: none;
+        height: 13px;
+        left: 7px;
+        position: absolute;
+        top: 2px;
+        transform: rotate(40deg);
+        width: 7px;
+    }
+}
