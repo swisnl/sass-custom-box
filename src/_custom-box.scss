@@ -9,7 +9,7 @@ $custom-box-element-separator: "__";
     }
 }
 
-@mixin custom-box-input($element) {
+@mixin custom-box-input($element: input) {
     @if & == null {
         @error 'no parent';
     }
@@ -24,7 +24,7 @@ $custom-box-element-separator: "__";
     }
 }
 
-@mixin custom-box-label($element) {
+@mixin custom-box-label($element: label) {
     @if & == null {
         @error 'no parent';
     }
