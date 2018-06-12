@@ -24,7 +24,7 @@
     "devDependencies": {
         "@swis/stylelint-config": "^1.0.1",
         "mocha": "^5.2.0",
-        "node-sass": "^4.9.0",
+        "node-sass": "https://github.com/sass/node-sass/tarball/v5",
         "sass-true": "^4.0.0",
         "stylelint": "^9.2.1",
         "stylelint-order": "^0.8.1",
