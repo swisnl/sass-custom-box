@@ -1,5 +1,11 @@
 $custom-box-element-separator: "__";
 
+@mixin throw-error-if-not-nested($value, $mixin) {
+    @if $value == null {
+        @error "Usage of the '#{$mixin}' mixin must be nested inside the 'custom-box' mixin";
+    }
+}
+
 @mixin custom-box($block) {
     .#{$block} {
         display: inline-block;
@@ -10,9 +16,7 @@ $custom-box-element-separator: "__";
 }
 
 @mixin custom-box-input($element: input) {
-    @if & == null {
-        @error 'no parent';
-    }
+    @include throw-error-if-not-nested(&, custom-box-input);
 
     @at-root {
         #{&}#{$custom-box-element-separator + $element} {
@@ -25,9 +29,7 @@ $custom-box-element-separator: "__";
 }
 
 @mixin custom-box-label($element: label) {
-    @if & == null {
-        @error 'no parent';
-    }
+    @include throw-error-if-not-nested(&, custom-box-label);
 
     @at-root {
         #{&}#{$custom-box-element-separator + $element} {
