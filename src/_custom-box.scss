@@ -2,6 +2,7 @@ $custom-box-element-separator: "__";
 
 @mixin custom-box($block) {
     .#{$block} {
+        display: inline-block;
         position: relative;
 
         @content;
