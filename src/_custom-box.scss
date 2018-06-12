@@ -63,12 +63,12 @@ $custom-box-element-separator: "__";
 
             @content;
         }
+    }
 
-        @at-root {
-            #{&} > input[type="checkbox"]:checked + #{&}#{$custom-box-element-separator + $element} {
-                &:after {
-                    display: block;
-                }
+    @at-root {
+        #{&} > input[type="checkbox"]:checked + #{&}#{$custom-box-element-separator + $element} {
+            &:after {
+                display: block;
             }
         }
     }
