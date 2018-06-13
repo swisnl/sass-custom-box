@@ -1,4 +1,5 @@
 $custom-box-element-separator: "__";
+$custom-box-type: null;
 
 @mixin throw-error-if-not-nested($value, $mixin) {
     @if $value == null {
@@ -6,7 +7,9 @@ $custom-box-element-separator: "__";
     }
 }
 
-@mixin custom-box($block) {
+@mixin custom-box($block, $type: checkbox) {
+    $custom-box-type: $type !global;
+
     .#{$block} {
         position: relative;
 
@@ -46,21 +49,37 @@ $custom-box-element-separator: "__";
                 margin-right: .5rem;
                 min-width: 1rem;
 
+                @if $custom-box-type == radiobox {
+                    border-radius: 50%;
+                }
+
                 // TODO Add focus styles
             }
 
             &:after {
-                border-bottom: 3px solid white;
-                border-right: 3px solid white;
                 content: '';
                 display: none;
-                height: .5rem;
-                left: .1rem;
                 position: absolute;
-                top: .2rem;
-                transform: rotate(40deg);
-                transform-origin: bottom right;
-                width: .25rem;
+
+                @if $custom-box-type == checkbox {
+                    border-bottom: 3px solid white;
+                    border-right: 3px solid white;
+                    height: .5rem;
+                    left: .1rem;
+                    top: .2rem;
+                    transform: rotate(40deg);
+                    transform-origin: bottom right;
+                    width: .25rem;
+                }
+
+                @if $custom-box-type == radiobox {
+                    background-color: white;
+                    border-radius: 50%;
+                    height: .5rem;
+                    left: .3rem;
+                    top: .3rem;
+                    width: .5rem;
+                }
             }
 
             @content;
@@ -68,7 +87,13 @@ $custom-box-element-separator: "__";
     }
 
     @at-root {
-        #{&} > input[type="checkbox"]:checked + #{&}#{$custom-box-element-separator + $element} {
+        $input: 'input[type="checkbox"]:checked';
+
+        @if $custom-box-type == radiobox {
+            $input: 'input[type="radio"]:checked';
+        }
+
+        #{&} > #{$input} + #{&}#{$custom-box-element-separator + $element} {
             &:after {
                 display: block;
             }
