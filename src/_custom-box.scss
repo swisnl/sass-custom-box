@@ -35,7 +35,6 @@ $custom-box-type: null;
 
     @at-root {
         #{&}#{$custom-box-element-separator + $element} {
-            align-items: center;
             display: inline-flex;
             position: relative;
 
