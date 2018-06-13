@@ -61,8 +61,11 @@ $custom-box-type: null;
             &:after {
                 box-sizing: border-box;
                 content: '';
-                display: none;
+                opacity: 0;
                 position: absolute;
+                transform: scale(.5);
+                transition: all .1s ease-in;
+                visibility: hidden;
 
                 @if $custom-box-type == checkbox {
                     border-bottom: 3px solid white;
@@ -70,7 +73,7 @@ $custom-box-type: null;
                     height: .6rem;
                     left: .075rem;
                     top: .2rem;
-                    transform: rotate(40deg);
+                    transform: scale(.5) rotate(40deg);
                     transform-origin: bottom right;
                     width: .4rem;
                 }
@@ -91,14 +94,18 @@ $custom-box-type: null;
 
     @at-root {
         $input: 'input[type="checkbox"]:checked';
+        $transform: scale(1) rotate(40deg);
 
         @if $custom-box-type == radiobox {
             $input: 'input[type="radio"]:checked';
+            $transform: scale(1);
         }
 
         #{&} > #{$input} + #{&}#{$custom-box-element-separator + $element} {
             &:after {
-                display: block;
+                opacity: 1;
+                transform: $transform;
+                visibility: visible;
             }
         }
     }
