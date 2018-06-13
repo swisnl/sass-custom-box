@@ -1,5 +1,37 @@
-$custom-box-element-separator: "__";
+$custom-box-element-separator: "__" !default;
 $custom-box-type: null;
+
+$custom-box-theme: (
+    base: (
+        container: (
+            background-color: blue,
+            border: none,
+            checked: (
+                background-color: black
+            )
+        ),
+        tick: (
+            background-color: white
+        )
+    ),
+    checkbox: (),
+    radiobox: ()
+);
+
+@function custom-box-property($type, $property, $element, $state: null) {
+    @if map-has-key(map-get($custom-box-theme, $type), $element) and
+        map-has-key(map-get(map-get($custom-box-theme, $type), $element), $property) {
+        @return map-get(map-get($custom-box-theme, $type), $property);
+    }
+    @else {
+        @if $state == null {
+            @return map-get(map-get(map-get($custom-box-theme, base), $element), $property);
+        }
+        @else {
+            @return map-get(map-get(map-get(map-get($custom-box-theme, base), $element), $state), $property);
+        }
+    }
+}
 
 @mixin throw-error-if-not-nested($value, $mixin) {
     @if $value == null {
@@ -41,8 +73,8 @@ $custom-box-type: null;
             position: relative;
 
             &:before {
-                background-color: white;
-                border: 1px solid red;
+                background-color: custom-box-property($custom-box-type, background-color, container);
+                border: custom-box-property($custom-box-type, border, container);
                 box-sizing: border-box;
                 content: '';
                 display: block;
@@ -50,6 +82,7 @@ $custom-box-type: null;
                 height: 1rem;
                 margin-right: .5rem;
                 min-width: 1rem;
+                transition: all .1s ease-in-out;
 
                 @if $custom-box-type == radiobox {
                     border-radius: 50%;
@@ -64,12 +97,12 @@ $custom-box-type: null;
                 opacity: 0;
                 position: absolute;
                 transform: scale(.5);
-                transition: all .1s ease-in;
+                transition: all .1s ease-in-out;
                 visibility: hidden;
 
                 @if $custom-box-type == checkbox {
-                    border-bottom: 3px solid red;
-                    border-right: 3px solid red;
+                    border-bottom: 3px solid custom-box-property($custom-box-type, background-color, tick);
+                    border-right: 3px solid custom-box-property($custom-box-type, background-color, tick);
                     height: .6rem;
                     left: .075rem;
                     top: .2rem;
@@ -79,7 +112,7 @@ $custom-box-type: null;
                 }
 
                 @if $custom-box-type == radiobox {
-                    background-color: red;
+                    background-color: custom-box-property($custom-box-type, background-color, tick);
                     border-radius: 50%;
                     height: .5rem;
                     left: .25rem;
@@ -102,6 +135,10 @@ $custom-box-type: null;
         }
 
         #{&} > #{$input} + #{&}#{$custom-box-element-separator + $element} {
+            &:before {
+                background-color: custom-box-property($custom-box-type, background-color, container, checked);
+            }
+
             &:after {
                 opacity: 1;
                 transform: $transform;
