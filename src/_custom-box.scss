@@ -11,6 +11,7 @@ $custom-box-type: null;
     $custom-box-type: $type !global;
 
     .#{$block} {
+        box-sizing: border-box;
         position: relative;
 
         @content;
@@ -35,12 +36,14 @@ $custom-box-type: null;
 
     @at-root {
         #{&}#{$custom-box-element-separator + $element} {
+            box-sizing: border-box;
             display: inline-flex;
             position: relative;
 
             &:before {
                 background-color: red;
                 border: 1px solid black;
+                box-sizing: border-box;
                 content: '';
                 display: block;
                 flex: 0 0 1rem;
@@ -56,6 +59,7 @@ $custom-box-type: null;
             }
 
             &:after {
+                box-sizing: border-box;
                 content: '';
                 display: none;
                 position: absolute;
@@ -63,20 +67,20 @@ $custom-box-type: null;
                 @if $custom-box-type == checkbox {
                     border-bottom: 3px solid white;
                     border-right: 3px solid white;
-                    height: .5rem;
-                    left: .1rem;
+                    height: .6rem;
+                    left: .075rem;
                     top: .2rem;
                     transform: rotate(40deg);
                     transform-origin: bottom right;
-                    width: .25rem;
+                    width: .4rem;
                 }
 
                 @if $custom-box-type == radiobox {
                     background-color: white;
                     border-radius: 50%;
                     height: .5rem;
-                    left: .3rem;
-                    top: .3rem;
+                    left: .25rem;
+                    top: .25rem;
                     width: .5rem;
                 }
             }
