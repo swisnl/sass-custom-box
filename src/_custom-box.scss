@@ -8,7 +8,6 @@ $custom-box-element-separator: "__";
 
 @mixin custom-box($block) {
     .#{$block} {
-        display: inline-block;
         position: relative;
 
         @content;
@@ -34,7 +33,7 @@ $custom-box-element-separator: "__";
     @at-root {
         #{&}#{$custom-box-element-separator + $element} {
             align-items: center;
-            display: flex;
+            display: inline-flex;
             position: relative;
 
             &:before {
