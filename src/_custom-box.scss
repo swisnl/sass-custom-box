@@ -6,24 +6,28 @@ $custom-box-type: null;
 
 $custom-box-base-theme: (
     container: (
+        _checked: (
+            background-color: black
+        ),
         background-color: blue,
         border: none,
+        border-radius: 0,
+        margin: 0 .5rem 0 0,
         size: 1rem,
-        checked: (
-            background-color: black
-        )
+        transition: all .1s ease-in-out
     ),
     tick: (
-        background-color: white
+        background-color: white,
+        transition: all .1s ease-in-out
     )
 );
 
-$custom-box-checkbox-theme: (
+$custom-box-checkbox-theme: ();
+$custom-box-radiobox-theme: (
     container: (
-        background-color: silver
+        border-radius: 50%
     )
 );
-$custom-box-radiobox-theme: ();
 
 @function get-custom-box-theme() {
     @return deep-map-merge($custom-box-base-theme, if($custom-box-type == checkbox, $custom-box-checkbox-theme, $custom-box-radiobox-theme));
@@ -75,18 +79,15 @@ $custom-box-radiobox-theme: ();
             &:before {
                 background-color: get-custom-box-property('container.background-color');
                 border: get-custom-box-property('container.border');
+                border-radius: get-custom-box-property('container.border-radius');
                 box-sizing: border-box;
                 content: '';
                 display: block;
                 flex: 0 0 get-custom-box-property('container.size');
                 height: get-custom-box-property('container.size');
-                margin-right: .5rem;
+                margin: get-custom-box-property('container.margin');
                 min-width: get-custom-box-property('container.size');
-                transition: all .1s ease-in-out;
-
-                @if $custom-box-type == radiobox {
-                    border-radius: 50%;
-                }
+                transition: get-custom-box-property('container.transition');
 
                 // TODO Add focus styles
             }
@@ -97,7 +98,7 @@ $custom-box-radiobox-theme: ();
                 opacity: 0;
                 position: absolute;
                 transform: scale(.5);
-                transition: all .1s ease-in-out;
+                transition: get-custom-box-property('container.transition');
                 visibility: hidden;
 
                 @if $custom-box-type == checkbox {
@@ -136,7 +137,7 @@ $custom-box-radiobox-theme: ();
 
         #{&} > #{$input} + #{&}#{$custom-box-element-separator + $element} {
             &:before {
-                background-color: get-custom-box-property('container.checked.background-color');
+                background-color: get-custom-box-property('container._checked.background-color');
             }
 
             &:after {
