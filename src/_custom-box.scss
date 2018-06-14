@@ -8,7 +8,7 @@ $custom-box-radiobox-theme: () !default;
 
 $custom-box-type: null;
 
-$custom-box-base-theme: (
+$custom-box-default-theme: (
     container: (
         _checked: (
             background-color: red
@@ -26,8 +26,8 @@ $custom-box-base-theme: (
     )
 );
 
-$custom-box-checkbox-base-theme: ();
-$custom-box-radiobox-base-theme: (
+$custom-box-default-checkbox-theme: ();
+$custom-box-default-radiobox-theme: (
     container: (
         border-radius: 50%
     )
@@ -35,7 +35,7 @@ $custom-box-radiobox-base-theme: (
 
 @function get-custom-box-theme() {
     $user-theme: deep-map-merge($custom-box-theme, if($custom-box-type == checkbox, $custom-box-checkbox-theme, $custom-box-radiobox-theme));
-    $default-theme: deep-map-merge($custom-box-base-theme, if($custom-box-type == checkbox, $custom-box-checkbox-base-theme, $custom-box-radiobox-base-theme));
+    $default-theme: deep-map-merge($custom-box-default-theme, if($custom-box-type == checkbox, $custom-box-default-checkbox-theme, $custom-box-default-radiobox-theme));
     @return deep-map-merge($default-theme, $user-theme);
 }
 
