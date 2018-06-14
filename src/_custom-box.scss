@@ -1,39 +1,36 @@
 @import "functions/map-helpers";
+@import "functions/deep-map-merge";
 
 $custom-box-element-separator: "__" !default;
 $custom-box-type: null;
 
-$custom-box-theme: (
-    base: (
-        container: (
-            background-color: blue,
-            border: none,
-            size: 1rem,
-            checked: (
-                background-color: black
-            )
-        ),
-        tick: (
-            background-color: white
+$custom-box-base-theme: (
+    container: (
+        background-color: blue,
+        border: none,
+        size: 1rem,
+        checked: (
+            background-color: black
         )
     ),
-    checkbox: (),
-    radiobox: ()
+    tick: (
+        background-color: white
+    )
 );
 
-@function custom-box-property($property, $element, $state: null) {
-    @if map-has-key(map-get($custom-box-theme, $custom-box-type), $element) and
-        map-has-key(map-get(map-get($custom-box-theme, $custom-box-type), $element), $property) {
-        @return map-get(map-get($custom-box-theme, $custom-box-type), $property);
-    }
-    @else {
-        @if $state == null {
-            @return map-get(map-get(map-get($custom-box-theme, base), $element), $property);
-        }
-        @else {
-            @return map-get(map-get(map-get(map-get($custom-box-theme, base), $element), $state), $property);
-        }
-    }
+$custom-box-checkbox-theme: (
+    container: (
+        background-color: silver
+    )
+);
+$custom-box-radiobox-theme: ();
+
+@function get-custom-box-theme() {
+    @return deep-map-merge($custom-box-base-theme, if($custom-box-type == checkbox, $custom-box-checkbox-theme, $custom-box-radiobox-theme));
+}
+
+@function get-custom-box-property($key) {
+    @return get($key, get-custom-box-theme());
 }
 
 @mixin throw-error-if-not-nested($value, $mixin) {
@@ -76,15 +73,15 @@ $custom-box-theme: (
             position: relative;
 
             &:before {
-                background-color: custom-box-property(background-color, container);
-                border: custom-box-property(border, container);
+                background-color: get-custom-box-property('container.background-color');
+                border: get-custom-box-property('container.border');
                 box-sizing: border-box;
                 content: '';
                 display: block;
-                flex: 0 0 custom-box-property(size, container);
-                height: custom-box-property(size, container);
+                flex: 0 0 get-custom-box-property('container.size');
+                height: get-custom-box-property('container.size');
                 margin-right: .5rem;
-                min-width: custom-box-property(size, container);
+                min-width: get-custom-box-property('container.size');
                 transition: all .1s ease-in-out;
 
                 @if $custom-box-type == radiobox {
@@ -104,8 +101,8 @@ $custom-box-theme: (
                 visibility: hidden;
 
                 @if $custom-box-type == checkbox {
-                    border-bottom: 3px solid custom-box-property(background-color, tick);
-                    border-right: 3px solid custom-box-property(background-color, tick);
+                    border-bottom: 3px solid get-custom-box-property('tick.background-color');
+                    border-right: 3px solid get-custom-box-property('tick.background-color');
                     height: .6rem;
                     left: .075rem;
                     top: .2rem;
@@ -115,7 +112,7 @@ $custom-box-theme: (
                 }
 
                 @if $custom-box-type == radiobox {
-                    background-color: custom-box-property(background-color, tick);
+                    background-color: get-custom-box-property('tick.background-color');
                     border-radius: 50%;
                     height: .5rem;
                     left: .25rem;
@@ -139,7 +136,7 @@ $custom-box-theme: (
 
         #{&} > #{$input} + #{&}#{$custom-box-element-separator + $element} {
             &:before {
-                background-color: custom-box-property(background-color, container, checked);
+                background-color: get-custom-box-property('container.checked.background-color');
             }
 
             &:after {
