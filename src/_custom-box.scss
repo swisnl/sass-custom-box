@@ -2,12 +2,16 @@
 @import "functions/deep-map-merge";
 
 $custom-box-element-separator: "__" !default;
+$custom-box-theme: () !default;
+$custom-box-checkbox-theme: () !default;
+$custom-box-radiobox-theme: () !default;
+
 $custom-box-type: null;
 
 $custom-box-base-theme: (
     container: (
         _checked: (
-            background-color: black
+            background-color: red
         ),
         background-color: blue,
         border: none,
@@ -22,15 +26,17 @@ $custom-box-base-theme: (
     )
 );
 
-$custom-box-checkbox-theme: ();
-$custom-box-radiobox-theme: (
+$custom-box-checkbox-base-theme: ();
+$custom-box-radiobox-base-theme: (
     container: (
         border-radius: 50%
     )
 );
 
 @function get-custom-box-theme() {
-    @return deep-map-merge($custom-box-base-theme, if($custom-box-type == checkbox, $custom-box-checkbox-theme, $custom-box-radiobox-theme));
+    $user-theme: deep-map-merge($custom-box-theme, if($custom-box-type == checkbox, $custom-box-checkbox-theme, $custom-box-radiobox-theme));
+    $default-theme: deep-map-merge($custom-box-base-theme, if($custom-box-type == checkbox, $custom-box-checkbox-base-theme, $custom-box-radiobox-base-theme));
+    @return deep-map-merge($default-theme, $user-theme);
 }
 
 @function get-custom-box-property($key) {
