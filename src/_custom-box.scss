@@ -29,7 +29,14 @@ $custom-box-default-theme: (
 $custom-box-default-checkbox-theme: ();
 $custom-box-default-radiobox-theme: (
     container: (
-        border-radius: 50%
+        border-radius: 50%,
+        height: .6rem,
+        width: .4rem
+    ),
+    tick: (
+        border-radius: 50%,
+        height: .5rem,
+        width: .5rem
     )
 );
 
@@ -110,21 +117,21 @@ $custom-box-default-radiobox-theme: (
                 @if $custom-box-type == checkbox {
                     border-bottom: 3px solid get-custom-box-property('tick.background-color');
                     border-right: 3px solid get-custom-box-property('tick.background-color');
-                    height: .6rem;
+                    height: get-custom-box-property('tick.height');
                     left: .075rem;
                     top: .2rem;
                     transform: scale(.5) rotate(40deg);
                     transform-origin: bottom right;
-                    width: .4rem;
+                    width: get-custom-box-property('tick.width');
                 }
 
                 @if $custom-box-type == radiobox {
                     background-color: get-custom-box-property('tick.background-color');
-                    border-radius: 50%;
-                    height: .5rem;
+                    border-radius: get-custom-box-property('tick.border-radius');
+                    height: get-custom-box-property('tick.height');
                     left: .25rem;
                     top: .25rem;
-                    width: .5rem;
+                    width: get-custom-box-property('tick.width');
                 }
             }
 
