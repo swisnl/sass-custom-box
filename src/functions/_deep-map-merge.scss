@@ -6,18 +6,16 @@
 @function deep-map-merge($map1, $map2) {
     @if ((type-of($map1) == map or type-of($map1) == list) and (type-of($map2) == map or type-of($map2) == list)) {
         $result: $map1;
-        @return $result;
         @each $key, $value in $map2 {
             @if (type-of(map-get($result, $key)) == map and type-of($value) == map) {
                 $result: map-merge($result, ($key: deep-map-merge(map-get($result, $key), $value)));
-            }
-            @else {
+            } @else {
                 $result: map-merge($result, ($key: $value));
             }
         }
-    }
-    @else {
-        @warn 'deep-map-merge() expects it\'s parameters to be map types!';
+        @return $result;
+    } @else {
+        @warn 'recursive-map-merge() expects it\'s parameters to be map types!';
         @return null;
     }
 }
