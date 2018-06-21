@@ -16,27 +16,35 @@ $custom-box-default-theme: (
         background-color: blue,
         border: none,
         border-radius: 0,
-        margin: 0 .5rem 0 0,
-        size: 1rem,
-        transition: all .1s ease-in-out
-    ),
+        height: 1em,
+        margin: 0 .5em 0 0,
+        transition: all .1s ease-in-out,
+        width: 1em
+),
     tick: (
         background-color: white,
         transition: all .1s ease-in-out
     )
 );
 
-$custom-box-default-checkbox-theme: ();
+$custom-box-default-checkbox-theme: (
+    tick: (
+        height: .6em,
+        left: .075em,
+        top: .2em,
+        width: .4em
+    )
+);
 $custom-box-default-radiobox-theme: (
     container: (
         border-radius: 50%,
-        height: .6rem,
-        width: .4rem
     ),
     tick: (
         border-radius: 50%,
-        height: .5rem,
-        width: .5rem
+        height: .5em,
+        left: .25em,
+        top: .25em,
+        width: .5em
     )
 );
 
@@ -96,10 +104,10 @@ $custom-box-default-radiobox-theme: (
                 box-sizing: border-box;
                 content: '';
                 display: block;
-                flex: 0 0 get-custom-box-property('container.size');
-                height: get-custom-box-property('container.size');
+                flex: 0 0 get-custom-box-property('container.width');
+                height: get-custom-box-property('container.height');
                 margin: get-custom-box-property('container.margin');
-                min-width: get-custom-box-property('container.size');
+                min-width: get-custom-box-property('container.width');
                 transition: get-custom-box-property('container.transition');
 
                 // TODO Add focus styles
@@ -108,8 +116,10 @@ $custom-box-default-radiobox-theme: (
             &:after {
                 box-sizing: border-box;
                 content: '';
+                left: get-custom-box-property('tick.left');
                 opacity: 0;
                 position: absolute;
+                top: get-custom-box-property('tick.top');
                 transform: scale(.5);
                 transition: get-custom-box-property('container.transition');
                 visibility: hidden;
@@ -118,8 +128,6 @@ $custom-box-default-radiobox-theme: (
                     border-bottom: 3px solid get-custom-box-property('tick.background-color');
                     border-right: 3px solid get-custom-box-property('tick.background-color');
                     height: get-custom-box-property('tick.height');
-                    left: .075rem;
-                    top: .2rem;
                     transform: scale(.5) rotate(40deg);
                     transform-origin: bottom right;
                     width: get-custom-box-property('tick.width');
@@ -129,8 +137,6 @@ $custom-box-default-radiobox-theme: (
                     background-color: get-custom-box-property('tick.background-color');
                     border-radius: get-custom-box-property('tick.border-radius');
                     height: get-custom-box-property('tick.height');
-                    left: .25rem;
-                    top: .25rem;
                     width: get-custom-box-property('tick.width');
                 }
             }
