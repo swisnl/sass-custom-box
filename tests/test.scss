@@ -2,7 +2,218 @@
 @import "../src/custom-box";
 
 @include describe('sass-custom-box global') {
-    @include it('Can run tests') {
-        @include assert-true(true);
+    @include it('Outputs a default container selector') {
+        @include assert {
+            @include output {
+                @include custom-box('my-checkbox');
+            }
+
+            @include expect {
+                .my-checkbox {
+                    box-sizing: border-box;
+                    position: relative;
+                }
+            }
+        }
+    }
+
+    @include it('Outputs content properties on the container selector') {
+        @include assert {
+            @include output {
+                @include custom-box('my-checkbox') {
+                    background-color: red;
+                }
+            }
+
+            @include expect {
+                .my-checkbox {
+                    box-sizing: border-box;
+                    position: relative;
+                    background-color: red;
+                }
+            }
+        }
+    }
+
+    @include it('Outputs an input selector') {
+        @include assert {
+            @include output {
+                @include custom-box('my-checkbox') {
+                    @include custom-box-input();
+                }
+            }
+
+            @include contains {
+                .my-checkbox__input {
+                    opacity: 0;
+                    position: absolute;
+                }
+            }
+        }
+    }
+
+    @include it('Outputs content properties on an input selector') {
+        @include assert {
+            @include output {
+                @include custom-box('my-checkbox') {
+                    @include custom-box-input() {
+                        margin-right: 2rem;
+                    }
+                }
+            }
+
+            @include contains {
+                .my-checkbox__input {
+                    opacity: 0;
+                    position: absolute;
+                    margin-right: 2rem;
+                }
+            }
+        }
+    }
+
+    @include it('Outputs a label selector for a checkbox') {
+        @include assert {
+            @include output {
+                @include custom-box('my-checkbox') {
+                    @include custom-box-label();
+                }
+            }
+
+            @include contains {
+                .my-checkbox__label {
+                    box-sizing: border-box;
+                    display: inline-flex;
+                    position: relative;
+                }
+
+                .my-checkbox__label:before {
+                    background-color: get-custom-box-property('container.background-color');
+                    border: get-custom-box-property('container.border');
+                    border-radius: get-custom-box-property('container.border-radius');
+                    box-sizing: border-box;
+                    content: '';
+                    display: block;
+                    flex: 0 0 get-custom-box-property('container.width');
+                    height: get-custom-box-property('container.height');
+                    margin: get-custom-box-property('container.margin');
+                    min-width: get-custom-box-property('container.width');
+                    transition: get-custom-box-property('container.transition');
+
+                    // TODO Add focus styles
+                }
+
+                .my-checkbox__label:after {
+                    box-sizing: border-box;
+                    content: '';
+                    left: get-custom-box-property('tick.left');
+                    opacity: 0;
+                    position: absolute;
+                    top: get-custom-box-property('tick.top');
+                    transform: scale(.5);
+                    transition: get-custom-box-property('container.transition');
+                    visibility: hidden;
+
+                    border-bottom: 3px solid get-custom-box-property('tick.background-color');
+                    border-right: 3px solid get-custom-box-property('tick.background-color');
+                    height: get-custom-box-property('tick.height');
+                    transform: scale(.5) rotate(40deg);
+                    transform-origin: bottom right;
+                    width: get-custom-box-property('tick.width');
+                }
+
+                .my-checkbox > input[type="checkbox"]:checked + .test-output .my-checkbox__label:before {
+                    background-color: get-custom-box-property('container._checked.background-color');
+                }
+
+                .my-checkbox > input[type="checkbox"]:checked + .test-output .my-checkbox__label:after {
+                    opacity: 1;
+                    transform: scale(1) rotate(40deg);
+                    visibility: visible;
+                }
+            }
+        }
+    }
+
+    @include it('Outputs a label selector for a radiobox') {
+        @include assert {
+            @include output {
+                @include custom-box('my-radiobox', radiobox) {
+                    @include custom-box-label();
+                }
+            }
+
+            @include contains {
+                .my-radiobox__label {
+                    box-sizing: border-box;
+                    display: inline-flex;
+                    position: relative;
+                }
+
+                .my-radiobox__label:before {
+                    background-color: get-custom-box-property('container.background-color');
+                    border: get-custom-box-property('container.border');
+                    border-radius: get-custom-box-property('container.border-radius');
+                    box-sizing: border-box;
+                    content: '';
+                    display: block;
+                    flex: 0 0 get-custom-box-property('container.width');
+                    height: get-custom-box-property('container.height');
+                    margin: get-custom-box-property('container.margin');
+                    min-width: get-custom-box-property('container.width');
+                    transition: get-custom-box-property('container.transition');
+
+                    // TODO Add focus styles
+                }
+
+                .my-radiobox__label:after {
+                    box-sizing: border-box;
+                    content: '';
+                    left: get-custom-box-property('tick.left');
+                    opacity: 0;
+                    position: absolute;
+                    top: get-custom-box-property('tick.top');
+                    transform: scale(.5);
+                    transition: get-custom-box-property('container.transition');
+                    visibility: hidden;
+
+                    background-color: get-custom-box-property('tick.background-color');
+                    border-radius: get-custom-box-property('tick.border-radius');
+                    height: get-custom-box-property('tick.height');
+                    width: get-custom-box-property('tick.width');
+                }
+
+                .my-radiobox > input[type="radio"]:checked + .test-output .my-radiobox__label:before {
+                    background-color: get-custom-box-property('container._checked.background-color');
+                }
+
+                .my-radiobox > input[type="radio"]:checked + .test-output .my-radiobox__label:after {
+                    opacity: 1;
+                    transform: scale(1);
+                    visibility: visible;
+                }
+            }
+        }
+    }
+
+    @include it('Outputs content properties on a label selector') {
+        @include assert {
+            @include output {
+                @include custom-box('my-checkbox') {
+                    @include custom-box-label() {
+                        background-color: red;
+                    }
+                }
+            }
+
+            @include contains {
+                .my-checkbox__label {
+                    box-sizing: border-box;
+                    display: inline-flex;
+                    position: relative;
+                    background-color: red;
+                }
+            }
+        }
     }
 }
