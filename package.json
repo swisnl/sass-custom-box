@@ -5,7 +5,8 @@
     "main": "src/_custom-box.scss",
     "scripts": {
         "fix": "stylelint --syntax=scss --fix \"**/*.scss\"",
-        "lint": "stylelint --syntax=scss \"**/*.scss\""
+        "lint": "stylelint --syntax=scss \"**/*.scss\"",
+        "test": "mocha tests/test.js"
     },
     "repository": {
         "type": "git",
@@ -22,6 +23,9 @@
     "homepage": "https://github.com/RoachMech/sass-custom-box#readme",
     "devDependencies": {
         "@swis/stylelint-config": "^1.0.2",
+        "mocha": "^5.2.0",
+        "node-sass": "^4.9.0",
+        "sass-true": "^4.0.0",
         "stylelint": "^9.2.1",
         "stylelint-order": "^0.8.1",
         "stylelint-scss": "^3.1.0"
