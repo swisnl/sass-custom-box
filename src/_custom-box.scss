@@ -1,5 +1,5 @@
-@import "functions/map-helpers";
-@import "functions/deep-map-merge";
+@import "helpers/map-helpers";
+@import "helpers/deep-map-merge";
 
 $custom-box-element-separator: "__" !default;
 $custom-box-theme: () !default;
