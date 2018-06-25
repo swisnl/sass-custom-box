@@ -13,6 +13,9 @@ $custom-box-default-theme: (
         _checked: (
             background-color: red
         ),
+        _focus: (
+            box-shadow: 0 0 5px blue
+        ),
         background-color: blue,
         border: none,
         border-radius: 0,
@@ -109,8 +112,6 @@ $custom-box-default-radiobox-theme: (
                 margin: get-custom-box-property('container.margin');
                 min-width: get-custom-box-property('container.width');
                 transition: get-custom-box-property('container.transition');
-
-                // TODO Add focus styles
             }
 
             &:after {
@@ -146,15 +147,15 @@ $custom-box-default-radiobox-theme: (
     }
 
     @at-root {
-        $input: 'input[type="checkbox"]:checked';
+        $input: 'input[type="checkbox"]';
         $transform: scale(1) rotate(40deg);
 
         @if $custom-box-type == radiobox {
-            $input: 'input[type="radio"]:checked';
+            $input: 'input[type="radio"]';
             $transform: scale(1);
         }
 
-        #{&} > #{$input} + #{&}#{$custom-box-element-separator + $element} {
+        #{&} > #{$input}:checked + #{&}#{$custom-box-element-separator + $element} {
             &:before {
                 background-color: get-custom-box-property('container._checked.background-color');
             }
@@ -163,6 +164,12 @@ $custom-box-default-radiobox-theme: (
                 opacity: 1;
                 transform: $transform;
                 visibility: visible;
+            }
+        }
+
+        #{&} > #{$input}:focus + #{&}#{$custom-box-element-separator + $element} {
+            &:before {
+                box-shadow: get-custom-box-property('container._focus.box-shadow');
             }
         }
     }

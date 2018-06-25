@@ -99,8 +99,6 @@
                     margin: get-custom-box-property('container.margin');
                     min-width: get-custom-box-property('container.width');
                     transition: get-custom-box-property('container.transition');
-
-                    // TODO Add focus styles
                 }
 
                 .my-checkbox__label:after {
@@ -130,6 +128,10 @@
                     opacity: 1;
                     transform: scale(1) rotate(40deg);
                     visibility: visible;
+                }
+
+                .my-checkbox > input[type="checkbox"]:focus + .test-output .my-checkbox__label:before {
+                    box-shadow: get-custom-box-property('container._focus.box-shadow');
                 }
             }
         }
@@ -162,8 +164,6 @@
                     margin: get-custom-box-property('container.margin');
                     min-width: get-custom-box-property('container.width');
                     transition: get-custom-box-property('container.transition');
-
-                    // TODO Add focus styles
                 }
 
                 .my-radiobox__label:after {
@@ -191,6 +191,10 @@
                     opacity: 1;
                     transform: scale(1);
                     visibility: visible;
+                }
+
+                .my-radiobox > input[type="radio"]:focus + .test-output .my-radiobox__label:before {
+                    box-shadow: get-custom-box-property('container._focus.box-shadow');
                 }
             }
         }
