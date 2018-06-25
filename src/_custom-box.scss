@@ -1,56 +1,9 @@
 @import "helpers/map-helpers";
 @import "helpers/deep-map-merge";
+@import "custom-box/theme";
 
 $custom-box-element-separator: "__" !default;
-$custom-box-theme: () !default;
-$custom-box-checkbox-theme: () !default;
-$custom-box-radiobox-theme: () !default;
-
 $custom-box-type: null;
-
-$custom-box-default-theme: (
-    container: (
-        _checked: (
-            background-color: red
-        ),
-        _focus: (
-            box-shadow: 0 0 5px blue
-        ),
-        background-color: blue,
-        border: none,
-        border-radius: 0,
-        height: 1em,
-        margin: 0 .5em 0 0,
-        transition: all .1s ease-in-out,
-        width: 1em
-),
-    tick: (
-        background-color: white,
-        transition: all .1s ease-in-out
-    )
-);
-
-$custom-box-default-checkbox-theme: (
-    tick: (
-        border-width: .2em,
-        height: .6em,
-        left: .075em,
-        top: .2em,
-        width: .4em
-    )
-);
-$custom-box-default-radiobox-theme: (
-    container: (
-        border-radius: 50%,
-    ),
-    tick: (
-        border-radius: 50%,
-        height: .5em,
-        left: .25em,
-        top: .25em,
-        width: .5em
-    )
-);
 
 @function get-custom-box-theme() {
     $user-theme: deep-map-merge($custom-box-theme, if($custom-box-type == checkbox, $custom-box-checkbox-theme, $custom-box-radiobox-theme));
