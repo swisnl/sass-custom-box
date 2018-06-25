@@ -32,6 +32,7 @@ $custom-box-default-theme: (
 
 $custom-box-default-checkbox-theme: (
     tick: (
+        border-width: .2em,
         height: .6em,
         left: .075em,
         top: .2em,
@@ -126,8 +127,8 @@ $custom-box-default-radiobox-theme: (
                 visibility: hidden;
 
                 @if $custom-box-type == checkbox {
-                    border-bottom: 3px solid get-custom-box-property('tick.background-color');
-                    border-right: 3px solid get-custom-box-property('tick.background-color');
+                    border-bottom: get-custom-box-property('tick.border-width') solid get-custom-box-property('tick.background-color');
+                    border-right: get-custom-box-property('tick.border-width') solid get-custom-box-property('tick.background-color');
                     height: get-custom-box-property('tick.height');
                     transform: scale(.5) rotate(40deg);
                     transform-origin: bottom right;

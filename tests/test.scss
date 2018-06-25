@@ -112,8 +112,8 @@
                     transition: get-custom-box-property('container.transition');
                     visibility: hidden;
 
-                    border-bottom: 3px solid get-custom-box-property('tick.background-color');
-                    border-right: 3px solid get-custom-box-property('tick.background-color');
+                    border-bottom: get-custom-box-property('tick.border-width') solid get-custom-box-property('tick.background-color');
+                    border-right: get-custom-box-property('tick.border-width') solid get-custom-box-property('tick.background-color');
                     height: get-custom-box-property('tick.height');
                     transform: scale(.5) rotate(40deg);
                     transform-origin: bottom right;
