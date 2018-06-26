@@ -89,10 +89,10 @@ The MIT License (MIT). Please see [License File](LICENSE) for more information.
 
 [SWIS][link-swis] is a web agency from Leiden, the Netherlands. We love working with open source software. 
 
-[ico-travis]: https://travis-ci.org/RoachMech/sass-custom-box.svg?branch=master
+[ico-travis]: https://travis-ci.org/swisnl/sass-custom-box.svg?branch=master
 [ico-swis]: https://img.shields.io/badge/%F0%9F%9A%80-made%20by%20SWIS-%23D9021B.svg
 
-[link-travis]: https://travis-ci.org/RoachMech/sass-custom-box
+[link-travis]: https://travis-ci.org/swisnl/sass-custom-box
 [link-author]: https://github.com/RoachMech
 [link-contributors]: ../../contributors
 [link-swis]: https://www.swis.nl
