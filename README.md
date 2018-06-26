@@ -85,7 +85,7 @@ If you discover any security related issues, please email security@swis.nl inste
 
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
 
-## SWIS
+## SWIS :heart: Open Source
 
 [SWIS][link-swis] is a web agency from Leiden, the Netherlands. We love working with open source software. 
 
