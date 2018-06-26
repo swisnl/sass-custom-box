@@ -2,7 +2,7 @@
 [![Build Status][ico-travis]][link-travis]
 [![Made by SWIS][ico-swis]][link-swis]
 
-Sass mixins for styling custom radioboxes and checkboxes
+BEM-compatible SASS mixins for styling radioboxes and checkboxes
 
 ## Install
 
