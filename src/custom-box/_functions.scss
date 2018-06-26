@@ -1,0 +1,9 @@
+@function get-custom-box-theme() {
+    $user-theme: deep-map-merge($custom-box-theme, if($custom-box-type == checkbox, $custom-box-checkbox-theme, $custom-box-radiobox-theme));
+    $default-theme: deep-map-merge($custom-box-default-theme, if($custom-box-type == checkbox, $custom-box-default-checkbox-theme, $custom-box-default-radiobox-theme));
+    @return deep-map-merge($default-theme, $user-theme);
+}
+
+@function get-custom-box-property($key) {
+    @return get($key, get-custom-box-theme());
+}

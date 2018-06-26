@@ -1,18 +1,31 @@
 @import "helpers/map-helpers";
 @import "helpers/deep-map-merge";
-@import "custom-box/theme";
 
 $custom-box-element-separator: "__" !default;
 $custom-box-type: null;
 
-@function get-custom-box-theme() {
-    $user-theme: deep-map-merge($custom-box-theme, if($custom-box-type == checkbox, $custom-box-checkbox-theme, $custom-box-radiobox-theme));
-    $default-theme: deep-map-merge($custom-box-default-theme, if($custom-box-type == checkbox, $custom-box-default-checkbox-theme, $custom-box-default-radiobox-theme));
-    @return deep-map-merge($default-theme, $user-theme);
+@import "custom-box/theme";
+@import "custom-box/functions";
+
+@mixin set-custom-box-theme($theme) {
+    @if type-of($theme) != 'map' {
+        @error "$theme for the 'set-custom-box-theme' mixin must be of type 'map', '#{type-of($theme)}' given";
+    }
+    $custom-box-theme: $theme !global;
 }
 
-@function get-custom-box-property($key) {
-    @return get($key, get-custom-box-theme());
+@mixin set-custom-box-checkbox-theme($theme) {
+    @if type-of($theme) != 'map' {
+        @error "$theme for the 'set-custom-box-checkbox-theme' mixin must be of type 'map', '#{type-of($theme)}' given";
+    }
+    $custom-box-checkbox-theme: $theme !global;
+}
+
+@mixin set-custom-box-radiobox-theme($theme) {
+    @if type-of($theme) != 'map' {
+        @error "$theme for the 'set-custom-box-radiobox-theme' mixin must be of type 'map', '#{type-of($theme)}' given";
+    }
+    $custom-box-radiobox-theme: $theme !global;
 }
 
 @mixin throw-error-if-not-nested($value, $mixin) {
