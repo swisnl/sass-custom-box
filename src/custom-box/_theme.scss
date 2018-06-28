@@ -5,21 +5,21 @@ $custom-box-radiobox-theme: ();
 $custom-box-default-theme: (
     container: (
         _checked: (
-            background-color: red
+            background-color: #b3e5fc
         ),
         _focus: (
-            box-shadow: 0 0 5px blue
+            box-shadow: 0 0 5px #01579b
         ),
-        background-color: blue,
-        border: none,
-        border-radius: 0,
+        background-color: #b3e5fc,
+        border: 1px solid #01579b,
+        border-radius: .2em,
         height: 1em,
         margin: 0 .5em 0 0,
         transition: all .1s ease-in-out,
         width: 1em
     ),
     tick: (
-        background-color: white,
+        background-color: #01579b,
         transition: all .1s ease-in-out
     )
 );
