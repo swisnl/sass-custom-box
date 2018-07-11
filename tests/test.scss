@@ -72,7 +72,7 @@
         }
     }
 
-    @include it('Outputs a label selector for a checkbox') {
+    @include it('Outputs a label selector') {
         @include assert {
             @include output {
                 @include custom-box('my-checkbox') {
@@ -83,10 +83,22 @@
             @include contains {
                 .my-checkbox__label {
                     box-sizing: border-box;
-                    display: inline-flex;
+                    display: flex;
                     position: relative;
                 }
+            }
+        }
+    }
 
+    @include it('Outputs a label selector for a checkbox') {
+        @include assert {
+            @include output {
+                @include custom-box('my-checkbox') {
+                    @include custom-box-label();
+                }
+            }
+
+            @include contains {
                 .my-checkbox__label:before {
                     background-color: get-custom-box-property('container.background-color');
                     border: get-custom-box-property('container.border');
@@ -122,6 +134,7 @@
 
                 .my-checkbox > input[type="checkbox"]:checked + .test-output .my-checkbox__label:before {
                     background-color: get-custom-box-property('container._checked.background-color');
+                    border: get-custom-box-property('container._checked.border');
                 }
 
                 .my-checkbox > input[type="checkbox"]:checked + .test-output .my-checkbox__label:after {
@@ -146,12 +159,6 @@
             }
 
             @include contains {
-                .my-radiobox__label {
-                    box-sizing: border-box;
-                    display: inline-flex;
-                    position: relative;
-                }
-
                 .my-radiobox__label:before {
                     background-color: get-custom-box-property('container.background-color');
                     border: get-custom-box-property('container.border');
@@ -212,9 +219,6 @@
 
             @include contains {
                 .my-checkbox__label {
-                    box-sizing: border-box;
-                    display: inline-flex;
-                    position: relative;
                     background-color: red;
                 }
             }
