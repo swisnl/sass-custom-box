@@ -64,7 +64,7 @@ $custom-box-type: null;
     @at-root {
         #{&}#{$custom-box-element-separator + $element} {
             box-sizing: border-box;
-            display: inline-flex;
+            display: flex;
             position: relative;
 
             &:before {
