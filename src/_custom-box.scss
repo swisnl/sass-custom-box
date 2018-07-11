@@ -125,6 +125,7 @@ $custom-box-type: null;
         #{&} > #{$input}:checked + #{&}#{$custom-box-element-separator + $element} {
             &:before {
                 background-color: get-custom-box-property('container._checked.background-color');
+                border: get-custom-box-property('container._checked.border');
             }
 
             &:after {

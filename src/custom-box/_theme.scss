@@ -5,7 +5,8 @@ $custom-box-radiobox-theme: ();
 $custom-box-default-theme: (
     container: (
         _checked: (
-            background-color: #b3e5fc
+            background-color: #b3e5fc,
+            border: 1px solid #01579b
         ),
         _focus: (
             box-shadow: 0 0 5px #01579b
