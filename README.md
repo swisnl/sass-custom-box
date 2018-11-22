@@ -58,6 +58,91 @@ SCSS:
 };
 ```
 
+### Customization
+
+This library comes with a predefined theme. To customize (parts of) this theme pass a scss map to the `set-custom-box-theme()` mixin as follows:
+
+``` scss
+$my-theme: (
+    container: (
+        background-color: red,
+        border: 1px solid black    
+    )
+);
+
+@include set-custom-box-theme($my-theme);
+```
+
+Below is the scss map which contains the default theme. Each of these items can be customized using the `set-custom-box-theme()` mixin.
+
+``` scss
+// default theme
+
+(
+    container: (
+        _checked: (
+            background-color: #b3e5fc,
+            border: 1px solid #01579b
+        ),
+        _focus: (
+            box-shadow: 0 0 5px #01579b
+        ),
+        background-color: #b3e5fc,
+        border: 1px solid #01579b,
+        border-radius: .2em,
+        height: 1em,
+        margin: 0 .5em 0 0,
+        transition: all .1s ease-in-out,
+        width: 1em
+    ),
+    tick: (
+        background-color: #01579b,
+        transition: all .1s ease-in-out
+    )
+)
+```
+
+#### Customize checkbox styling
+
+In order to change checkbox specific styling pass an scss map with your desired items to the `set-custom-box-checkbox-theme()` mixin. 
+You can override any of the default checkbox items, the default checkbox theme is the default theme as shown above appended with the following scss map:
+
+``` scss
+// default checkbox theme, appended to the default theme
+
+(
+    tick: (
+        border-width: .2em,
+        height: .6em,
+        left: .075em,
+        top: .2em,
+        width: .4em
+    )
+)
+```
+
+#### Customize radiobox styling
+
+In order to change radiospecific styling pass an scss map with your desired items to the `set-custom-box-radiobox-theme()` mixin. 
+You can override any of the default radiobox items, the default radiobox theme is the default theme as shown above appended with the following scss map:
+
+``` scss
+// default radiobox theme, appended to the default theme
+
+(
+    container: (
+        border-radius: 50%,
+    ),
+    tick: (
+        border-radius: 50%,
+        height: .5em,
+        left: .25em,
+        top: .25em,
+        width: .5em
+    )
+)
+```
+
 ## Change log
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
