@@ -78,8 +78,8 @@ $custom-box-type: null;
                 flex: 0 0 auto;
                 height: get-custom-box-property('container.height');
                 margin: get-custom-box-property('container.margin');
-                width: get-custom-box-property('container.width');
                 transition: get-custom-box-property('container.transition');
+                width: get-custom-box-property('container.width');
             }
 
             &:after {
