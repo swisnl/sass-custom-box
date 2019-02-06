@@ -74,10 +74,10 @@ $custom-box-type: null;
                 box-sizing: border-box;
                 content: '';
                 display: block;
-                flex: 0 0 get-custom-box-property('container.width');
+                flex: 0 0 auto;
                 height: get-custom-box-property('container.height');
                 margin: get-custom-box-property('container.margin');
-                min-width: get-custom-box-property('container.width');
+                width: get-custom-box-property('container.width');
                 transition: get-custom-box-property('container.transition');
             }
 
