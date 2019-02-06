@@ -64,7 +64,8 @@ $custom-box-type: null;
     @at-root {
         #{&}#{$custom-box-element-separator + $element} {
             box-sizing: border-box;
-            display: flex;
+            display: inline-flex;
+            line-height: get-custom-box-property('container.height');
             position: relative;
 
             &:before {
