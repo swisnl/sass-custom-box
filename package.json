@@ -1,6 +1,6 @@
 {
     "name": "sass-custom-box",
-    "version": "0.1.1",
+    "version": "0.2.0",
     "description": "Sass mixins for styling custom radioboxes and checkboxes",
     "main": "src/_custom-box.scss",
     "scripts": {
