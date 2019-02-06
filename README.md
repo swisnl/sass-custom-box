@@ -89,11 +89,11 @@ Below is the scss map which contains the default theme. Each of these items can 
         ),
         background-color: #b3e5fc,
         border: 1px solid #01579b,
-        border-radius: .2em,
-        height: 1em,
-        margin: 0 .5em 0 0,
+        border-radius: .25rem,
+        height: 1.25rem,
+        margin: 0 .5rem 0 0,
         transition: all .1s ease-in-out,
-        width: 1em
+        width: 1.25rem
     ),
     tick: (
         background-color: #01579b,
@@ -135,10 +135,10 @@ You can override any of the default radiobox items, the default radiobox theme i
     ),
     tick: (
         border-radius: 50%,
-        height: .5em,
-        left: .25em,
-        top: .25em,
-        width: .5em
+        height: .75rem,
+        left: .25rem,
+        top: .25rem,
+        width: .75rem
     )
 )
 ```
