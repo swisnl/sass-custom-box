@@ -1,5 +1,7 @@
 # sass-custom-box
 [![Build Status][ico-travis]][link-travis]
+[![Software License][ico-license]](LICENSE.md)
+[![Buy us a tree][ico-treeware]][link-treeware]
 [![Made by SWIS][ico-swis]][link-swis]
 
 BEM-compatible SASS mixins for styling radioboxes and checkboxes
@@ -168,16 +170,19 @@ If you discover any security related issues, please email security@swis.nl inste
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE) for more information.
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
 ## SWIS :heart: Open Source
 
 [SWIS][link-swis] is a web agency from Leiden, the Netherlands. We love working with open source software. 
 
 [ico-travis]: https://travis-ci.org/swisnl/sass-custom-box.svg?branch=master
+[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg
+[ico-treeware]: https://img.shields.io/badge/Treeware-%F0%9F%8C%B3-lightgreen.svg
 [ico-swis]: https://img.shields.io/badge/%F0%9F%9A%80-made%20by%20SWIS-%23D9021B.svg
 
 [link-travis]: https://travis-ci.org/swisnl/sass-custom-box
 [link-author]: https://github.com/RoachMech
 [link-contributors]: ../../contributors
+[link-treeware]: https://plant.treeware.earth/swisnl/sass-custom-box
 [link-swis]: https://www.swis.nl
